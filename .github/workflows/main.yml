@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: fail check unless labeled with webapproval
-        if: !contains(github.event.pull_request.labels, 'webapproval')
+        if: ! contains(github.event.pull_request.labels, 'webapproval')
         uses: cutenode/action-always-fail@v1.0.1
       - name: record web approval via cdlib-cli
         if: contains(github.event.pull_request.labels, 'webapproval')
