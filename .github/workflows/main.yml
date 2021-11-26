@@ -7,7 +7,7 @@ on:
 
 jobs:
   webapproval:
-    if: contains(github.event.pull_request_labels.*.name, 'webapproval')
+    if: contains(github.event.pull_request_labels, 'webapproval')
     runs-on: ubuntu-latest
     steps:
       - name: Docker Run Action
