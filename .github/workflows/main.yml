@@ -7,10 +7,13 @@ on:
 
 jobs:
   webapproval:
-    if: contains(github.event.pull_request_labels, 'webapproval')
     runs-on: ubuntu-latest
     steps:
-      - name: Docker Run Action
+      - name: fail check unless labeled with webapproval
+        if: !contains(github.event.pull_request.labels, 'webapproval')
+        uses: cutenode/action-always-fail@v1.0.1
+      - name: record web approval via cdlib-cli
+        if: contains(github.event.pull_request.labels, 'webapproval')
         uses: addnab/docker-run-action@v3
         with:
           image: cdlib-cli:5.latest
